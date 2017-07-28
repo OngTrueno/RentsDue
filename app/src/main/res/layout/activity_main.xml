@@ -71,8 +71,8 @@
         android:id="@+id/etNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:ems="10"
         android:inputType="number" />
 
@@ -86,21 +86,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:background="@color/colorPrimary"
-            android:text="ADD"
-            android:textColor="@android:color/background_light" />
-
-        <Button
-            android:id="@+id/btnRetrieve"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:background="@color/colorPrimary"
-            android:text="RETRIEVE"
+            android:text="ADD"
             android:textColor="@android:color/background_light" />
 
     </LinearLayout>

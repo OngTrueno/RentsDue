@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements Serializable {
 
     EditText etName, etAmount, etDate, etNumber;
-    Button btnAdd, btnRetrieve;
+    Button btnAdd;
     ListView lv;
     ArrayList<Data> al;
     ArrayAdapter aa;
@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         etDate=(EditText)findViewById(R.id.etDate);
         etNumber=(EditText)findViewById(R.id.etNumber);
         btnAdd = (Button)findViewById(R.id.btnAdd);
-        btnRetrieve = (Button)findViewById(R.id.btnRetrieve);
         lv = (ListView)findViewById(R.id.lv);
         al = new ArrayList<Data>();
 
@@ -75,23 +74,12 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
                 DBHelper dbh = new DBHelper(MainActivity.this);
                 long row_affected = dbh.insert(name, amount, date, number);
-                dbh.close();
+                retrieve();
 
                 if (row_affected != -1){
                     Toast.makeText(MainActivity.this, "Insert successful",
                             Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
-
-        btnRetrieve.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DBHelper dbh = new DBHelper(MainActivity.this);
-                al.clear();
-                al.addAll(dbh.getData());
-                dbh.close();
-                aa.notifyDataSetChanged();
             }
         });
     }
@@ -102,7 +90,15 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK && requestCode == 9){
-            btnRetrieve.performClick();
+            retrieve();
         }
+    }
+
+    protected void retrieve(){
+        DBHelper dbh = new DBHelper(MainActivity.this);
+        al.clear();
+        al.addAll(dbh.getData());
+        dbh.close();
+        aa.notifyDataSetChanged();
     }
 }
